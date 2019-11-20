@@ -69,7 +69,7 @@ Even without a unique user ID, we’ll pass along the reward value for you to ad
 
 In order to receive rewards earned from inBrain, the presenting UIViewController should conform to the *InBrainDelegate* and set itself to the inBrainDelegate of the inBrain instance variable declared earlier.
 
-*** Handling Rewards Received & Confirming Received Rewards
+### Handling Rewards Received & Confirming Received Rewards (sample code below)
 
 ```
 class ViewController: UIViewController, InBrainDelegate {
@@ -94,4 +94,49 @@ class ViewController: UIViewController, InBrainDelegate {
 Rewards that have been processed **must** be confirmed with InBrain. To do this, use the ***InBrain.confirmRewards(txIDArray: [Int])*** function to confirm the acceptance of reward data.
 
 This call should **always** be made following reward data processing.
+
+## Ad Hoc inBrain Functions
+
+**presentInBrainWebView(withSecret: String, withAppUID: String)** 
+* Presents the InBrain WebView with your Info.pList values as authentication credentials 
+* Ensure this is being called from the InBrain.shared singleton reference 
+* The Secret is your provided clientSecret from inBrain, based on the environment being tested
+* The AppUID is for the user attempting to use InBrain; this is often the unique account email or unique username of the user in your app 
+* Send blank string as parameter (“”) if no unique identifier is used for users in your app
+
+**getRewards() (Useful for server less app)**
+* InBrainDelegate must be set and implementation of inBrainRewardsReceived(rewardsArray: [InBrainReward]) function must be available to receive reward data
+* Stand alone function to explicitly call for rewards within the app code 
+
+**confirmRewards(txIDArray: [Int]) (Useful for server less app)**
+* Necessary call to confirm processed reward data
+* Pass array of reward transactionIDs as function parameter 
+
+### InBrainDelegate functions
+***inBrainWebViewDismissed()***
+* This delegate function calls back whenever the InBrainWebView is dismissed
+
+## Customize inBrain
+
+Call these functions in code prior to calling *presentInBrainWebView(withSecret: String, withAppUID: String)*
+
+
+**setInBrainWebViewTitle(toString: String)**
+
+* Presents the InBrain WebView with the title string which is provided by the toString parameter
+
+**setInBrainWebViewNavBarColor(toColor: UIColor)**
+
+* Presents the InBrain WebView with the navigationBar displaying the toColor parameter as its background color
+
+**setInBrainWebViewNavButtonColor(toColor: UIColor)**
+
+* Presents the InBrain WebView with the navigationButtons displaying the toColor parameter as its text color
+
+# Side note - Things to double check:
+* Be sure your input Info.pList values have the proper key and values 
+
+* The UIViewController that presents the InBrainWebView should properly conform to the InBrainDelegate.
+
+* Ensure that you are implementing the inBrainRewardsReceived() function to receive reward data from the getRewards() call.
 
