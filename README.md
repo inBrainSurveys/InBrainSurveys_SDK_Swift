@@ -30,10 +30,6 @@ Add a new row to your apps's ***Info.plist*** , as type 'Dictionary', and title 
 
 **Next,** add another row to your InBrain Dictionary in your ***Info.plist*** and title it **“server”**. Set its type to *Bool*, then if your app will be using S2S callbacks for inBrain rewards, set value to YES, otherwise set to NO.
 
-**Finally,** add one last row to your InBrain Dictionary in your ***Info.plist*** and title it **'prodEnv'**. Set its type to *Bool*, then if your app is launching in the inBrain production environment, set value to YES, otherwise set value to NO.
-
-(You may want to test in staging (‘NO’ status) but you MUST switch the status to YES before going live.)
-
 # Usage
 
 An InBrain object should be added as an instance variable of the presenting UIViewController, then instantiated using the singleton call. 
