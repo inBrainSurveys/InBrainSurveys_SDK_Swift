@@ -18,11 +18,13 @@ Scroll down until you hit the ***Embedded Binaries*** section…
 # Configuration
 You’ll need to have 3 items:
 
-**1)** Your unique App ID
+**1)** A unique User ID, (per user)
 
-**2)** Your unique Client ID 
+**2)** Your API Client ID, (as provided by inBrain)
 
-**3)** Based on your app's architecture, whether the rewards will be delivered via in-app callback or Server-to-Server (S2S)callback 
+**3)** Your API Secret, (as provided by inBrain)
+
+**4)** Based on your app's architecture, whether the rewards will be delivered via in-app callback or Server-to-Server (S2S)callback 
 
 Add a new row to your apps's ***Info.plist*** , as type 'Dictionary', and title it **“InBrain”**. (You can right click anywhere in ***Info.plist*** and then click **“Add Row”**.
 
@@ -54,7 +56,7 @@ To present the InBrain WebView from a UIViewController, set the UIViewController
 override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     inBrain.inBrainDelegate = self
-    inBrain.presentInBrainWebView(withSecret: self.inBrainClientId, withAppUID: "anyID")
+    inBrain.presentInBrainWebView(withSecret: ViewController.secret, withAppUID: "myUser.email")
 }
 ```
 ## Reward Hooks For Server2Server Apps
@@ -98,7 +100,7 @@ This call should **always** be made following reward data processing.
 **presentInBrainWebView(withSecret: String, withAppUID: String)** 
 * Presents the InBrain WebView with your Info.pList values as authentication credentials 
 * Ensure this is being called from the InBrain.shared singleton reference 
-* The Secret is your provided clientSecret from inBrain, based on the environment being tested
+* The Secret is your provided clientSecret from inBrain
 * The AppUID is for the user attempting to use InBrain; this is often the unique account email or unique username of the user in your app 
 * Send blank string as parameter (“”) if no unique identifier is used for users in your app
 
