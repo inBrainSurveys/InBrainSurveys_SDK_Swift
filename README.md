@@ -16,7 +16,7 @@ Scroll down until you hit the ***Embedded Binaries*** section…
 2) Once selected, add to your Embedded Binaries.
 
 # Configuration
-You’ll need to have 3 items:
+You’ll need to have 4 items:
 
 **1)** A unique User ID, (per user)
 
