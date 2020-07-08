@@ -39,7 +39,7 @@ class ViewController : UIViewController {
     
     var inBrain : InBrain = InBrain.shared
     static let exampleClient = "client"
-	static let exampleSecret = "secret"
+    static let exampleSecret = "secret"
 }
 ```
 
@@ -79,12 +79,12 @@ override func viewDidAppear(_ animated: Bool) {
     
     //Create dataOptions Dictionary
     var data : [[String : Any]] = []
-	let data1 : [String: Any] = ["gender" : "male"]
-	data.append(data1)
-	let data2 : [String : Any] = ["age" : 34]
-	data.append(data2)
+    let data1 : [String: Any] = ["gender" : "male"]
+    data.append(data1)
+    let data2 : [String : Any] = ["age" : 34]
+    data.append(data2)
     
-	inBrain.setInBrainValuesFor(sessionID: "testing33_Session", dataOptions: data)
+    inBrain.setInBrainValuesFor(sessionID: "testing33_Session", dataOptions: data)
     
     inBrain.showSurveys()
 }
@@ -105,17 +105,17 @@ In order to receive rewards earned from inBrain, the presenting UIViewController
 class ViewController: UIViewController, InBrainDelegate {
     func didReceiveInBrainRewards(rewardsArray: [InBrainReward]) {
         var arr : [Int] = []
-		for reward in rewardsArray {
+	for reward in rewardsArray {
             //User's balance is increased by reward amount
-			points +=  reward.amount
-			pointsLabel.text = "Total Points: \(points)"
-			let txID = reward.transactionId
+	    points +=  reward.amount
+	    pointsLabel.text = "Total Points: \(points)"
+	    let txID = reward.transactionId
             
             //Append each transactionId value to 'arr' array
-			arr.append(txID)
-		}
-		//Pass array of transactionID's as parameter of confirmRewards()
-		inBrain.confirmRewards(txIdArray: arr)
+	    arr.append(txID)
+	}
+	//Pass array of transactionID's as parameter of confirmRewards()
+	inBrain.confirmRewards(txIdArray: arr)
     }
 }
 ```
@@ -155,7 +155,6 @@ This call should **always** be made following reward data processing.
 ## Customize inBrain
 
 Call these functions in code prior to calling *showSurveys()*
-
 
 **setInBrainWebViewTitle(toString: String)**
 
